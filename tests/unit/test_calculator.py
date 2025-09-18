@@ -63,8 +63,11 @@ class TestAdvancedOperations:
         assert square_root(4) == 2
         assert square_root(9) == 3
         assert square_root(16) == 4
-    def test_square_root_negative_raises_error(self):
-        """Test that square root of negative raises
-        ValueError"""       
+    def square_root(a):
+        """Calculate square root of a"""
+        if a < 0:
+            raise ValueError("Cannot calculate square root of negative")
+        return a ** 0.5
+  
 
 # TODO: Students will add TestMultiplyDivide class
