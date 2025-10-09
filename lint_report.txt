@@ -1,20 +1,13 @@
 ************* Module src.cli
-src/cli.py:35:0: C0304: Final newline missing (missing-final-newline)
-src/cli.py:7:0: E0401: Unable to import 'calculator' (import-error)
-src/cli.py:31:11: W0718: Catching too general exception Exception (broad-exception-caught)
-src/cli.py:35:4: E1120: No value for argument 'operation' in function call (no-value-for-parameter)
-src/cli.py:35:4: E1120: No value for argument 'num1' in function call (no-value-for-parameter)
-src/cli.py:7:0: W0611: Unused multiply imported from calculator (unused-import)
-src/cli.py:7:0: W0611: Unused divide imported from calculator (unused-import)
-src/cli.py:7:0: W0611: Unused power imported from calculator (unused-import)
-src/cli.py:7:0: W0611: Unused square_root imported from calculator (unused-import)
+src/cli.py:8:0: E0401: Unable to import 'calculator' (import-error)
+src/cli.py:38:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src/cli.py:44:4: E1120: No value for argument 'operation' in function call (no-value-for-parameter)
+src/cli.py:44:4: E1120: No value for argument 'num1' in function call (no-value-for-parameter)
+src/cli.py:8:0: W0611: Unused power imported from calculator (unused-import)
+src/cli.py:8:0: W0611: Unused square_root imported from calculator (unused-import)
 ************* Module src.calculator
-src/calculator.py:32:1: W0511: TODO: Students will add multiply, divide, power, sqrt functions (fixme)
-************* Module src.test_cli_integration
-src/test_cli_integration.py:32:0: C0304: Final newline missing (missing-final-newline)
-src/test_cli_integration.py:14:17: W1510: 'subprocess.run' used without explicitly defining the value for 'check'. (subprocess-run-check)
-src/test_cli_integration.py:6:0: W0611: Unused import pytest (unused-import)
+src/calculator.py:39:1: W0511: TODO: Students will add multiply, divide, power, sqrt functions (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 5.83/10 (previous run: 5.83/10, +0.00)
+Your code has been rated at 6.98/10 (previous run: 6.98/10, +0.00)
 
