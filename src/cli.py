@@ -3,9 +3,9 @@ Command Line Interface for Calculator
 Example: python src/cli.py add 5 3
 """
 
+from src.calculator import add, subtract, multiply, divide, power, square_root
 import sys
 import click
-from calculator import add, subtract, multiply, divide, power, square_root
 
 
 @click.command()
