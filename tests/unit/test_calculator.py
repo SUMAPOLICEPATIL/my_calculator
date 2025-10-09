@@ -80,8 +80,6 @@ class TestAdvancedOperations:
         assert square_root(16) == 4
 
     def test_square_root_negative_raises_error(self):
-        """Test that square root of negative raises
-        ValueError"""
-
-
-# TODO: Students will add TestMultiplyDivide class
+        """Test that square root of negative raises ValueError"""
+        with pytest.raises(ValueError):
+            square_root(-4)
