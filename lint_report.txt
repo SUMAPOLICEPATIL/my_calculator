@@ -1,7 +1,31 @@
+************* Module src.cli
+src/cli.py:38:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src/cli.py:44:4: E1120: No value for argument 'operation' in function call (no-value-for-parameter)
+src/cli.py:44:4: E1120: No value for argument 'num1' in function call (no-value-for-parameter)
+src/cli.py:7:0: C0411: standard import "sys" should be placed before first party import "src.calculator.add"  (wrong-import-order)
+src/cli.py:8:0: C0411: third party import "click" should be placed before first party import "src.calculator.add"  (wrong-import-order)
+src/cli.py:6:0: W0611: Unused power imported from src.calculator (unused-import)
+src/cli.py:6:0: W0611: Unused square_root imported from src.calculator (unused-import)
 ************* Module src.calculator
-src/calculator.py:34:0: C0304: Final newline missing (missing-final-newline)
-src/calculator.py:28:1: W0511: TODO: Students will add multiply, divide, power, sqrt functions (fixme)
+src/calculator.py:39:1: W0511: TODO: Students will add multiply, divide, power, sqrt functions (fixme)
+************* Module src.test_cli_integration
+src/test_cli_integration.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/test_cli_integration.py:69:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/test_cli_integration.py:75:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/test_cli_integration.py:81:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/test_cli_integration.py:87:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/test_cli_integration.py:93:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/test_cli_integration.py:51:0: C0411: standard import "subprocess" should be placed before third party import "pytest" (wrong-import-order)
+src/test_cli_integration.py:52:0: C0411: standard import "sys" should be placed before third party import "pytest" (wrong-import-order)
+src/test_cli_integration.py:50:0: W0611: Unused import pytest (unused-import)
+src/test_cli_integration.py:53:0: W0611: Unused add imported from src.calculator (unused-import)
+src/test_cli_integration.py:53:0: W0611: Unused subtract imported from src.calculator (unused-import)
+src/test_cli_integration.py:53:0: W0611: Unused multiply imported from src.calculator (unused-import)
+src/test_cli_integration.py:53:0: W0611: Unused divide imported from src.calculator (unused-import)
+src/test_cli_integration.py:53:0: W0611: Unused power imported from src.calculator (unused-import)
+src/test_cli_integration.py:53:0: W0611: Unused square_root imported from src.calculator (unused-import)
+src/test_cli_integration.py:54:0: W0611: Unused cli imported from src (unused-import)
 
 ------------------------------------------------------------------
-Your code has been rated at 8.89/10 (previous run: 8.89/10, +0.00)
+Your code has been rated at 5.68/10 (previous run: 5.68/10, +0.00)
 
