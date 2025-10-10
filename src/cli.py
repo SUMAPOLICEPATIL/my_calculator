@@ -1,48 +1,57 @@
 """
-Command Line Interface for Calculator
-Example: python src/cli.py add 5 3
+Command-line interface for calculator module.
 """
 
-from src.calculator import add, subtract, multiply, divide, power, square_root
 import sys
 import click
+from src.calculator import add, multiply, divide, power, square_root
 
+@click.group()
+def calculate():
+    """Calculator CLI."""
+    pass
 
-@click.command()
-@click.argument("operation")
-@click.argument("num1", type=float)
-@click.argument("num2", type=float, required=False)
-def calculate(operation, num1, num2=None):
-    """Simple calculator CLI"""
+@calculate.command()
+@click.argument("x", type=float)
+@click.argument("y", type=float)
+def add_cmd(x, y):
+    """Add two numbers."""
+    click.echo(add(x, y))
 
+@calculate.command()
+@click.argument("x", type=float)
+@click.argument("y", type=float)
+def multiply_cmd(x, y):
+    """Multiply two numbers."""
+    click.echo(multiply(x, y))
+
+@calculate.command()
+@click.argument("x", type=float)
+@click.argument("y", type=float)
+def divide_cmd(x, y):
+    """Divide two numbers."""
     try:
-        if operation == "add":
-            result = add(num1, num2)
-        elif operation == "subtract":
-            result = subtract(num1, num2)
-        elif operation == "multiply":
-            result = multiply(num1, num2)
-        elif operation == "divide":
-            result = divide(num1, num2)
-        elif operation == "power":
-            result = power(num1, num2)
-        elif operation in ("square_root", "sqrt"):
-            result = square_root(num1)
-        else:
-            click.echo(f"Unknown operation:{operation}")
-            sys.exit(1)
-        # Format result nicely
-        if result == int(result):
-            click.echo(int(result))
-        else:
-            click.echo(f"{result:.2f}")
-    except ValueError as e:
-        click.echo(f"Error: {e}")
-        sys.exit(1)
-    except Exception as e:    # pylint: disable=broad-exception-caught
-        click.echo(f"Unexpected error: {e}")
+        click.echo(divide(x, y))
+    except ZeroDivisionError as e:
+        click.echo(e, err=True)
         sys.exit(1)
 
+@calculate.command()
+@click.argument("x", type=float)
+@click.argument("y", type=float)
+def power_cmd(x, y):
+    """Raise x to the power y."""
+    click.echo(power(x, y))
+
+@calculate.command()
+@click.argument("x", type=float)
+def sqrt_cmd(x):
+    """Square root of a number."""
+    try:
+        click.echo(square_root(x))
+    except ValueError as e:
+        click.echo(e, err=True)
+        sys.exit(1)
 
 if __name__ == "__main__":
-    calculate()  # pylint: disable=no-value-for-parameter
+    calculate()
