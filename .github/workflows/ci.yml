@@ -17,6 +17,7 @@ jobs:
         id: set-python
         with:
           python-version: "3.13"
+
       - name: Cache pip
         uses: actions/cache@v4
         with:
@@ -24,6 +25,7 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
@@ -37,18 +39,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Python 3.13
         uses: actions/setup-python@v4
         with:
           python-version: '3.13'
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Unit Tests with Coverage
         run: |
           echo " Running unit tests..."
           pytest tests/unit/ -v --cov=src --cov-report=term --cov-report=xml
+
       - name: Integration Tests
         run: |
           echo " Running integration tests..."
@@ -61,18 +67,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.13'
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Run tests with coverage and generate HTML report
         run: |
           echo " Checking test coverage..."
           pytest tests/ --cov=src --cov-fail-under=80 --cov-report=term-missing --cov-report=html
+
       - name: Upload coverage HTML
         uses: actions/upload-artifact@v4
         with:
@@ -86,14 +96,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.13'
+
       - name: Install pylint
         run: |
           python -m pip install --upgrade pip
           pip install pylint
+
       - name: Run pylint and save report
         run: |
           echo " Running pylint..."
@@ -107,6 +120,7 @@ jobs:
             echo "Could not determine pylint score"; exit 1
           fi
           awk -v s="$score" 'BEGIN{ if (s+0 < 7.0) exit 1 }' || (echo "Pylint score $score is below threshold 7.0" && exit 1)
+
       - name: Upload lint report
         uses: actions/upload-artifact@v4
         with:
@@ -120,14 +134,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Python 3.13
         uses: actions/setup-python@v4
         with:
           python-version: '3.13'
+
       - name: Install black
         run: |
           python -m pip install --upgrade pip
           pip install black
+
       - name: Check formatting with black (apply if fails)
         run: |
           echo " Checking formatting with black..."
@@ -137,6 +154,7 @@ jobs:
           else
             echo "Black formatting OK"
           fi
+
       - name: Show black diff (if any)
         run: black src/ tests/ --diff || true
 
@@ -147,22 +165,27 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Python 3.13
         uses: actions/setup-python@v4
         with:
           python-version: '3.13'
+
       - name: Install bandit
         run: |
           python -m pip install --upgrade pip
           pip install bandit
+
       - name: Run bandit (console)
         run: |
           echo " Running bandit security scan..."
           bandit -r src/ -v || true
+
       - name: Run bandit (json output)
         run: |
           rm -f security_report.json || true
           bandit -r src/ -f json -o security_report.json || true
+
       - name: Upload security report
         uses: actions/upload-artifact@v4
         with:
@@ -175,24 +198,28 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Download coverage artifact (if present)
         uses: actions/download-artifact@v4
         with:
           name: coverage-html
           path: artifacts/coverage-html
           continue-on-error: true
+
       - name: Download lint report (if present)
         uses: actions/download-artifact@v4
         with:
           name: lint-report
           path: artifacts/lint
           continue-on-error: true
+
       - name: Download security report (if present)
         uses: actions/download-artifact@v4
         with:
           name: security-report
           path: artifacts/security
           continue-on-error: true
+
       - name: "Simple package: compile, zip and upload"
         run: |
           echo " Creating simple deployment package..."
@@ -204,6 +231,7 @@ jobs:
           echo "Created deployment-package.zip"
           ls -lh deployment-package.zip || true
           unzip -l deployment-package.zip || true
+
       - name: Upload deployment package
         uses: actions/upload-artifact@v4
         with:
